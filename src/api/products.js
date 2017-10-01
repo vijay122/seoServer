@@ -60,22 +60,28 @@ function * arrIterate(arr){
 exports.generateSitemapXml = function(req,res)
 {
     //let paths = ['/blog/post::slug'];
+try {
+console.log("inside generateSitemapXml");
 
-    let paths = ["/detail/id::param/category::subparam",'/blog/post::slug','/','/about','/newblog','/posts/::param','/categories::id/searchtype::id/search::id','/contact','/join-us','/products'];
+    let paths = ["/detail/id::param/category::subparam", '/blog/post::slug', '/', '/about', '/newblog', '/posts/::param', '/categories::id/searchtype::id/search::id', '/contact', '/join-us', '/products'];
 
 
-    let requests = paths.map((item,index) => {
+    let requests = paths.map((item, index) => {
         return new Promise((resolve) => {
-            processXMLFileCreation(item,index);
+            processXMLFileCreation(item, index);
         });
     })
 
-    Promise.all(requests).then(() =>
-	{
-		debugger;
-		console.log('done')
+    Promise.all(requests).then(() => {
+        debugger;
+        console.log('done')
     });
 
+}
+catch(ex)
+{
+	console.log("exception inside generateSitemapXml");
+}
 	//var iter = processXMLFileCreation(paths[9],i);
 	//paths.forEach(function(entry,index) {
 		//iter.next(entry,index);
@@ -231,6 +237,7 @@ function createSitemapFromUrls(urls,index) {
 
 function processXMLFileCreation(path,index) {
 	try {
+        console.log("inside processXMLFileCreation for path:"+path);
         return new Promise((resolve) => {
 		const data =  fetchRecordsFromDatabase(path).then(function(data){
 			buildUrlsFromData('http://livelytrips.com',data,path).then(function(urls)
