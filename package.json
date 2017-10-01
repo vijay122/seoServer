@@ -7,7 +7,7 @@
     "dev": "nodemon -w src --exec \"babel-node src --presets es2015,stage-0\"",
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "start": "node dist",
-    "startup":"node ./dist/api/index.js",
+    "startup": "node ./dist/api/index.js",
     "prestart": "npm run -s build",
     "test": "eslint src"
   },
@@ -33,6 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.4.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.23.0",
     "body-parser": "^1.13.3",
     "camo": "^0.12.3",

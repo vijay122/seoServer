@@ -11,7 +11,7 @@ import middleware from './middleware';
 import api from './api';
 import config from './config.json';
 
-
+let regeneratorRuntime =  require("regenerator-runtime");
 //var compression = require('compression')
 //var busboy = require('connect-busboy'); //middleware for form/file
 
