@@ -208,6 +208,20 @@ function buildUrlsFromData(baseurl,data,path) {
 		}
 	});
 }
+fs.isDir = function(dpath) {
+    try {
+        return fs.lstatSync(dpath).isDirectory();
+    } catch(e) {
+        return false;
+    }
+};
+fs.mkdirp = function(dirname) {
+    dirname = path.normalize(dirname).split(path.sep);
+    dirname.forEach((sdir,index)=>{
+        var pathInQuestion = dirname.slice(0,index+1).join(path.sep);
+        if((!fs.isDir(pathInQuestion)) && pathInQuestion) fs.mkdirSync(pathInQuestion);
+    });
+};
 function createSitemapFromUrls(urls,index) {
 	return new Promise((resolve) => {
 		var sitemap = sm.createSitemap({
@@ -222,7 +236,7 @@ function createSitemapFromUrls(urls,index) {
 			else
 			{
 				var sitemapGeneratedName='sitemap_'+index+'.xml';
-				fs.writeFile(sitemapGeneratedName, xml, function (err) {
+				fs.writeFile("/"+sitemapGeneratedName, xml, function (err) {
 					if (err) throw err;
 					console.log('It\'s saved!');
 					//sitemapurls.push(baseurl + sitemapGeneratedName);
