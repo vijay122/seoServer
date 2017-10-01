@@ -236,7 +236,7 @@ function createSitemapFromUrls(urls,index) {
 			else
 			{
 				var sitemapGeneratedName='sitemap_'+index+'.xml';
-				fs.writeFile("/"+sitemapGeneratedName, xml, function (err) {
+				fs.writeFile("/root/m_ui/sitemaps/"+sitemapGeneratedName, xml, function (err) {
 					if (err) throw err;
 					console.log('It\'s saved!');
 					//sitemapurls.push(baseurl + sitemapGeneratedName);
