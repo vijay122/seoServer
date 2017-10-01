@@ -2,7 +2,7 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import facets from './facets';
 import prds from './products';
-import {addGround,GetProducts,generateSitemapXml,fetchXml} from './products';
+import {addGround,GetProducts,generateSitemapXml,createSitemapindex,fetchXml} from './products';
 import {loadUserInfo,disableUser,addUser,updateUser} from './users';
 
 export default ({ config, db }) => {
@@ -20,6 +20,7 @@ export default ({ config, db }) => {
 		response.json("hello this is index");
 	});
 	api.get('/app2/generateSitemap',generateSitemapXml);
+    api.get('/app2/createSitemap',createSitemapindex);
 
 	return api;
 }

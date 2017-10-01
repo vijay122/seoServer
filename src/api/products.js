@@ -4,6 +4,7 @@ var Async = require('async');
 var MongoClient = require('mongodb').MongoClient;
 import {replaceRoutes,applyParams} from '../lib/sitemapUtils';
 var Pkgcollection;
+var glob = require("glob");
 
 var sm = require('sitemap')
 	, fs = require('fs');
@@ -267,6 +268,28 @@ function processXMLFileCreation(path,index) {
 	{
 		console.error(String(e));
 	}
+}
+
+exports.createSitemapindex = function(req,res){
+
+    var options ={};
+// options is optional
+    glob("/root/m_ui/sitemaps/*.xml", options, function (er, files) {
+        // files is an array of filenames.
+        // If the `nonull` option is set, and nothing
+        // was found, then files is ["**/*.js"]
+        // er is an error object or null.
+            var smi = sm.createSitemapIndex({
+            cacheTime: 600000,
+            hostname: 'http://www.sitemap.org',
+            sitemapName: 'sitemap.xml',
+            sitemapSize: 1,
+            targetFolder: '/root/m_ui/',
+            urls: files
+            // optional:
+            // callback: function(err, result) {}
+        });
+    })
 }
 
 
