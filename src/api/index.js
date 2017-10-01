@@ -16,10 +16,10 @@ export default ({ config, db }) => {
 		console.log("inside get of empty");
 		res.json({ version });
 	});
-	api.get('/index', function (request, response) {
+	api.get('/app2/index', function (request, response) {
 		response.json("hello this is index");
 	});
-	api.get('/generateSitemap',generateSitemapXml);
+	api.get('/app2/generateSitemap',generateSitemapXml);
 
 	return api;
 }
