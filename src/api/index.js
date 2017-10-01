@@ -12,7 +12,7 @@ export default ({ config, db }) => {
 	api.use('/facets', facets({ config, db }));
 
 	// perhaps expose some API metadata at the root
-	api.get('/', (req, res) => {
+	api.get('/app2/', (req, res) => {
 		console.log("inside get of empty");
 		res.json({ version });
 	});
