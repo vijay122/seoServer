@@ -281,8 +281,8 @@ exports.createSitemapindex = function(req,res){
         // er is an error object or null.
             var smi = sm.createSitemapIndex({
             cacheTime: 600000,
-            hostname: 'http://www.sitemap.org',
-            sitemapName: 'sitemap.xml',
+            hostname: 'http://www.livelytrips.com/sitemaps',
+            sitemapName: 'sitemap',
             sitemapSize: 1,
             targetFolder: '/root/m_ui/',
             urls: files
