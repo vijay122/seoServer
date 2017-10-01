@@ -62,18 +62,10 @@ exports.generateSitemapXml = function(req,res)
     //let paths = ['/blog/post::slug'];
 
     let paths = ["/detail/id::param/category::subparam",'/blog/post::slug','/','/about','/newblog','/posts/::param','/categories::id/searchtype::id/search::id','/contact','/join-us','/products'];
-	var i=0;
 
-	/*
-    let requests = paths.reduce((promiseChain, item) => {
-        return promiseChain.then(() => new Promise((resolve) => {
-            asyncFunction(item, resolve);
-        }));
-    }, Promise.resolve());
-*/
+
     let requests = paths.map((item,index) => {
         return new Promise((resolve) => {
-           // asyncFunction(item, resolve);
             processXMLFileCreation(item,index);
         });
     })
